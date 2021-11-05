@@ -13,6 +13,12 @@ inputs:
   terraformHost:
     description: 'Terraform Host Name'
     required: true
+  awsAccessKeyId:
+    description: 'AWS Access Key ID'
+    required: true
+  awsSecretAccessKey:
+    description: 'AWS Secret Access Key'
+    required: true
 outputs:
   workSpaceId: 
     description: 'Terraform WorkspaceId'
