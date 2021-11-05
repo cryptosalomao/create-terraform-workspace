@@ -1,4 +1,4 @@
-name: 'Create Terraform Workspace'
+name: 'Create Terraform Workspace with AWS Credentials'
 description: 'Invoke Terraform API to create workspce in Terraform Cloud.'
 inputs:
   workSpaceName:
