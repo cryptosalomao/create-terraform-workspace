@@ -17,6 +17,7 @@ try{
     console.log("request:" + JSON.stringify(request));
 
     const terraformEndpoint = "https://"+terraformHost+"/api/v2/organizations/"+organizationName+"/workspaces";
+    
     const options = {
         headers: {'Content-Type': 'application/vnd.api+json',
                   'Authorization': 'Bearer '+token
@@ -27,8 +28,10 @@ try{
       .then(async (response) => {
         console.log("success:"+ JSON.stringify(response.data));
 
-        await axios.post(`${terraformEndpoint}/${response.data.data.id}/vars`, setAccessKeyRequest, options)
-        await axios.post(`${terraformEndpoint}/${response.data.data.id}/vars`, setSecretAccessKeyRequest, options)
+        const terraformVariablesEndpoint = "https://"+terraformHost+"/api/v2/workspaces/"+response.data.data.id+"/vars"
+
+        await axios.post(`${terraformVariablesEndpoint}`, setAccessKeyRequest, options)
+        await axios.post(`${terraformVariablesEndpoint}`, setSecretAccessKeyRequest, options)
 
         core.setOutput("workSpaceId", response.data.data.id);
       }, (error) => {
